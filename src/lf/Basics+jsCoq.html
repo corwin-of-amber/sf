@@ -21,6 +21,11 @@
 #main {
     transition: padding 0.5s ease;
 }
+.doc div.code {
+    display: block;
+    overflow-x: auto;
+}
+
 *:focus {
     outline: none;
 }
@@ -1280,7 +1285,7 @@ Instead of making a universal claim about all numbers <span class="inlinecode"><
 &nbsp;&nbsp;<span class="comment">(*&nbsp;move&nbsp;the&nbsp;hypothesis&nbsp;into&nbsp;the&nbsp;context:&nbsp;*)</span><br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">H</span>.<br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;rewrite&nbsp;the&nbsp;goal&nbsp;using&nbsp;the&nbsp;hypothesis:&nbsp;*)</span><br/>
-&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> → <span class="id" type="var">H</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> -&gt; <span class="id" type="var">H</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>. <span class="id" type="keyword">Qed</span>.<br/>
 </div>
 
@@ -1340,7 +1345,7 @@ The first line of the proof moves the universally quantified
 &nbsp;&nbsp;(0 + <span class="id" type="var">n</span>) * <span class="id" type="var">m</span> = <span class="id" type="var">n</span> * <span class="id" type="var">m</span>.<br/>
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>.<br/>
-&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> → <span class="id" type="var">plus_O_n</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> -&gt; <span class="id" type="var">plus_O_n</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>. <span class="id" type="keyword">Qed</span>.<br/>
 </div>
 
