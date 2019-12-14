@@ -36,3 +36,15 @@ src/qc/all.pdf:
 	make -C src/qc all
 	-patch -N -d src/qc < src/Makefile.patch
 	make -C src/qc all.pdf	
+
+# Packages for jsCoq
+JSCOQ_ROOT = node_modules/jscoq
+JSCOQ_BUILD = $(JSCOQ_ROOT)/ui-js/coq-build.js
+JSCOQ_PKGS = $(JSCOQ_ROOT)/coq-pkgs
+
+lf_DEPS = coq-base,coq-arith
+
+lf-jscoq: src/lf
+	node $(JSCOQ_BUILD) --project src/lf --deps "$(lf_DEPS)" \
+		--create-package $(JSCOQ_PKGS)/lf.coq-pkg   \
+		--create-manifest $(JSCOQ_PKGS)/lf.json
