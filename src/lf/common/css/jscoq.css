@@ -1,0 +1,21 @@
+body {
+  overscroll-behavior-y: none;
+}
+
+@media only screen and (max-width: 1564px) {  /* 860 / 0.55 */
+  #ide-wrapper:not(.toggled) #main {
+    padding-right: 10px;
+  }
+}
+
+#main {
+  transition: padding 0.5s ease;
+}
+.doc div.code {
+  display: block;
+  overflow-x: auto;
+}
+
+*:focus {
+  outline: none;
+}

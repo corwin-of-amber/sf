@@ -1,0 +1,16 @@
+{
+  "name": "software-foundations",
+  "version": "1.0.0",
+  "description": "Software Foundations book with jsCoq",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corwin-of-amber/sf.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/corwin-of-amber/sf#readme",
+  "dependencies": {
+    "jscoq": "0.10.0"
+  }
+}
