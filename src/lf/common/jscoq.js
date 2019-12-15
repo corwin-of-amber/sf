@@ -6,15 +6,12 @@
 
 function jsCoqInject() {
     $(document.body).addClass('hands-off')
-        .append($('<div>').attr('id', 'ide-wrapper').addClass('toggled')
-                            .append($('#page')))
-        .append($('<link href="common/css/jscoq.css" rel="stylesheet" type="text/css"/>'));
+        .append($('<div id="ide-wrapper">')
+            .addClass('toggled').append($('#page')))
+        .append($('<link href="common/css/jscoq.css" rel="stylesheet" type="text/css"/>'))
+        .append($('<div id="jscoq-plug">')
+            .click(jsCoqStart));
 }
-
-// - remove empty code fragments (coqdoc generates some spurious ones)
-$('#main > div.code').each(function() {
-    if ($(this).text().match(/^\s$/)) $(this).remove();
-});
 
 var jsCoqShow = (localStorage.jsCoqShow === 'true');
 
@@ -32,16 +29,29 @@ var jscoq_opts = {
                 'lf', 'plf']
 };
 
-function jsCoqOn() {
+function jsCoqLoad() {
+    // - remove empty code fragments (coqdoc generates some spurious ones)
+    $('#main > div.code').each(function() {
+        if ($(this).text().match(/^\s$/)) $(this).remove();
+    });
+
     JsCoq.start(jscoq_opts.base_path, '../../node_modules', jscoq_ids, jscoq_opts)
         .then(coq => {
             window.coq = coq;
             window.addEventListener('beforeunload', () => { localStorage.jsCoqShow = coq.layout.isVisible(); });
             document.querySelector('#page').focus();
         });
+    
+    if (jscoq_opts.show)
+        $(document.body).addClass('jscoq-launched');
+}
+
+function jsCoqStart() {
+    $(document.body).addClass('jscoq-launched');
+    coq.layout.show();
 }
 
 if (location.search === '') {
     jsCoqInject();
-    jsCoqOn();
+    jsCoqLoad();
 }
