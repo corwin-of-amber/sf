@@ -11,6 +11,6 @@
   "license": "AGPL-3.0-or-later",
   "homepage": "https://github.com/corwin-of-amber/sf#readme",
   "dependencies": {
-    "jscoq": "0.10.0"
+    "jscoq": "https://github.com/corwin-of-amber/jscoq/releases/download/v0.10.1/jscoq-0.10.1-npm.tar.gz"
   }
 }
