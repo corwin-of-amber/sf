@@ -32,18 +32,23 @@ body {
 ul#menu { 
     padding: 0;
     display: block;
-    margin: auto;
+    margin: 0;
+    white-space: nowrap;
 }
 
 ul#menu li, div.button {
     display: inline-block;
     background-color: white;
     padding: 5px;
+    vertical-align: bottom;
     font-size: .70em;
     text-transform: uppercase;
     width: 30%;
     text-align: center;
     font-weight: 600;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 div.button {
