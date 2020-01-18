@@ -32,18 +32,23 @@ body {
 ul#menu { 
     padding: 0;
     display: block;
-    margin: auto;
+    margin: 0;
+    white-space: nowrap;
 }
 
 ul#menu li, div.button {
     display: inline-block;
     background-color: white;
     padding: 5px;
+    vertical-align: bottom;
     font-size: .70em;
     text-transform: uppercase;
     width: 30%;
     text-align: center;
     font-weight: 600;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 
 div.button {
@@ -509,6 +514,10 @@ tr.infrulemiddle hr {
 #toc h2 .select { background-image: url('media/image/arrow_down.jpg'); }
 div#sec1.hide { display: none; }
 
+#toc h2 {
+    outline: none;
+}
+
 #toc ul {
     padding-top: 8px;
     margin-bottom: -8px;
@@ -553,7 +562,21 @@ html .ui-button.ui-state-disabled:active {
     color: #454545!important;
     font-weight: 400!important;
     margin-top: 0px!important;
-    
+}
+
+h2.ui-state-default {
+    transition: background 0s;
+    transition-delay: 0.15s;
+}
+
+h2.ui-state-default a {
+    transition: color 0s;
+    transition-delay: 0.15s;
+}
+
+h2.ui-state-active,
+h2.ui-state-active a {
+    transition-delay: 0s;
 }
 
 /* Misc visuals
@@ -593,7 +616,8 @@ html .ui-button.ui-state-disabled:focus {
 }
 
 /*  Remove Icon  */
-.ui-icon { display: none!important; }
+/* .ui-icon { display: none!important; } */
+h2 .ui-icon { margin-right: .25em; }
 
 /*  Widget  */
 .ui-widget-content {
@@ -612,8 +636,9 @@ html .ui-button.ui-state-disabled:focus {
     border-bottom: 1px solid #b2b2b2!important;
 }
 
-.ui-accordion .ui-accordion-content {
-	padding: 0 2.2em 2em .75em !important;
+#toc .ui-accordion .ui-accordion-content {
+	padding: 0 2.2em 1em 2em;
+	margin-bottom: 1em;
 	border-top: 0;
     overflow: auto;
 }

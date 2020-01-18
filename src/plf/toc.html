@@ -13,35 +13,8 @@
 <link href="common/css/plf.css" rel="stylesheet" type="text/css"/>
 
 <script>
-
-$(document).ready(function() {
-
-    $("#accordion").show().accordion({
-        autoHeight: false
-    });
-
-    $("#accordion div").css({ 'height': 'auto' });
-});      
-
-
 $( function() {
-    var icons = {
-      header: "ui-icon-circle-arrow-e",
-      activeHeader: "ui-icon-circle-arrow-s"
-    };
-    
-    $( "#accordion" ).accordion({
-      icons: icons
-    });
-    $("#accordion").accordion({collapsible : true, active : 'none'});
-
-    $( "#toggle" ).button().on( "click", function() {
-      if ( $( "#accordion" ).accordion( "option", "icons" ) ) {
-        $( "#accordion" ).accordion( "option", "icons", null );
-      } else {
-        $( "#accordion" ).accordion( "option", "icons", icons );
-      }
-    });
+    $("#accordion").accordion({collapsible : true, /*animate: false,*/ heightStyle: "content", active : 'none'});
   } );
   </script>
 <body>
