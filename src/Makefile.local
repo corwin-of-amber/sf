@@ -1,5 +1,5 @@
 all.tex: $(VFILES)
-	$(SHOW)'COQDOC -latex $(GAL)'
+	$(SHOW)'COQDOC -latex $(VFILES)'
 	$(HIDE)$(COQDOC) \
 		-toc $(COQDOCFLAGS) -latex $(GAL) $(COQDOCLIBS) \
 		-o $@ ${filter-out $(SKIP),$(VFILES)}
