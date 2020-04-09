@@ -13,6 +13,8 @@ function jsCoqInject() {
 
 var jsCoqShow = (localStorage.jsCoqShow === 'true');
 
+var pkg_dir = new URL('../../coq-pkgs', location).href;
+
 var jscoq_ids  = ['#main > div.code'];
 var jscoq_opts = {
     layout:    'flex',
@@ -23,7 +25,7 @@ var jscoq_opts = {
     init_pkgs: ['init'],
     all_pkgs:  {
         '+': ['init', 'coq-base', 'coq-collections', 'coq-arith', 'coq-reals'],
-        '/coq-pkgs': ['lf']
+        [pkg_dir]: ['lf']
     },
     init_import: ['utf8']
 };
