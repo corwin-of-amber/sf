@@ -5,37 +5,36 @@
  */
 
 function jsCoqInject() {
-    $(document.body).addClass('hands-off')
-        .append($('<div id="ide-wrapper">')
-            .addClass('toggled').append($('#page')))
+    $(document.body).attr('id', 'ide-wrapper').addClass('toggled')
+        .addClass(isTerse() ? 'terse' : 'full')
         .append($('<link href="common/css/jscoq.css" rel="stylesheet" type="text/css"/>'))
-        .append($('<div id="jscoq-plug">')
-            .click(jsCoqStart));
+        .append($('<div id="jscoq-plug">').click(jsCoqStart));
 }
 
 var jsCoqShow = (localStorage.jsCoqShow === 'true');
 
 var jscoq_ids  = ['#main > div.code'];
 var jscoq_opts = {
-    init_import: ['utf8'],
+    layout:    'flex',
     show:      jsCoqShow,
     focus:     false,
     replace:   true,
-    base_path: '../../node_modules/jscoq/',
     editor:    { mode: { 'company-coq': true }, keyMap: 'default', className: 'jscoq code-tight' },
     init_pkgs: ['init'],
-    all_pkgs:  ['init',
-                'coq-base', 'coq-collections', 'coq-arith', 'coq-reals',
-                'lf', 'plf']
+    all_pkgs:  {
+        '+': ['init', 'coq-base', 'coq-collections', 'coq-arith', 'coq-reals'],
+        '/coq-pkgs': ['lf']
+    },
+    init_import: ['utf8']
 };
 
 function jsCoqLoad() {
     // - remove empty code fragments (coqdoc generates some spurious ones)
     $('#main > div.code').each(function() {
-        if ($(this).text().match(/^\s$/)) $(this).remove();
+        if ($(this).text().match(/^\s*$/)) $(this).remove();
     });
 
-    JsCoq.start(jscoq_opts.base_path, '../../node_modules', jscoq_ids, jscoq_opts)
+    JsCoq.start(jscoq_ids, jscoq_opts)
         .then(coq => {
             window.coq = coq;
             window.addEventListener('beforeunload', () => { localStorage.jsCoqShow = coq.layout.isVisible(); });
@@ -49,6 +48,10 @@ function jsCoqLoad() {
 function jsCoqStart() {
     $(document.body).addClass('jscoq-launched');
     coq.layout.show();
+}
+
+function isTerse() {
+    return $('[src$="/slides.js"]').length > 0;
 }
 
 if (location.search === '') {
